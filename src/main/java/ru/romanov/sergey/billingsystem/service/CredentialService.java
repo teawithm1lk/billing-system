@@ -1,5 +1,6 @@
 package ru.romanov.sergey.billingsystem.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.romanov.sergey.billingsystem.entity.Credential;
 import ru.romanov.sergey.billingsystem.repository.CredentialRepository;
@@ -16,7 +17,7 @@ public class CredentialService {
 
     public Credential findCredentialByLogin(String login) {
         return credentialRepository.findById(login)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public List<Credential> findAllCredentials() {

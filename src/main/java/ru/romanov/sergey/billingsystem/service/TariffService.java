@@ -1,5 +1,6 @@
 package ru.romanov.sergey.billingsystem.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.romanov.sergey.billingsystem.entity.Tariff;
 import ru.romanov.sergey.billingsystem.repository.TariffRepository;
@@ -17,7 +18,7 @@ public class TariffService {
 
     public Tariff findTariffById(String id) {
         return tariffRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public List<Tariff> findAllTariffs() {

@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ChangeTariffRequestDTO {
+public class ChangeTariffResponseDTO {
+    private Integer id;
     private String numberPhone;
     private String tariffId;
 }

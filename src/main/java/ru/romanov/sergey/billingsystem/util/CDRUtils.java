@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class CDRGeneration {
-    private static final int NUMBER_OF_LINES = 100000;
+public class CDRUtils {
+    private static final String CDR_FILE_NAME = "cdr.txt";
+    public static final String CDR_FILE_PATH = "./src/main/resources/static/" + CDR_FILE_NAME;
+    public static final String SDF_PATTERN = "yyyyMMddHHmmss";
+    private static final int NUMBER_OF_LINES = 10000;
     private static final String[] CALL_TYPES = {"01", "02"};
-    private static final String SDF_PATTERN = "yyyyMMddHHmmss";
     private static final int MONTH_PERIOD_NUMBER = 1;
     private static final int DAY_OF_PERIOD = 1;
     private static final long DISTRIBUTION_IN_MILLISECONDS = 3 * 60 * 60 * 1000L;
@@ -23,7 +25,7 @@ public class CDRGeneration {
         endDate.add(Calendar.MONTH, MONTH_PERIOD_NUMBER);
         final long DISTRIBUTION_INSIDE_MONTH = endDate.getTimeInMillis() - startDate.getTimeInMillis();
 
-        try(FileWriter writer = new FileWriter("cdr.txt", false)) {
+        try(FileWriter writer = new FileWriter(CDR_FILE_PATH, false)) {
             for (int i = 0; i < NUMBER_OF_LINES; i++) {
                 String callType = CALL_TYPES[random.nextInt(2)];
                 String number = numbers.get(random.nextInt(numbers.size()));

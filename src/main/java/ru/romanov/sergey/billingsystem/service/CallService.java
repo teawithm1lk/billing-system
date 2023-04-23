@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.romanov.sergey.billingsystem.entity.Call;
 import ru.romanov.sergey.billingsystem.repository.CallRepository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Component
@@ -33,5 +34,9 @@ public class CallService {
 
     public Call save(Call call) {
         return callRepository.save(call);
+    }
+
+    public boolean existsCallByPhoneAndTimestamp(String phoneNumber, Timestamp timestamp) {
+        return callRepository.existsByPhoneEqualsAndStartTimestampEquals(phoneService.findUserById(phoneNumber), timestamp);
     }
 }

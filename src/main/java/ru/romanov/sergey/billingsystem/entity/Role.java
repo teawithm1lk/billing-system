@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 public class Role implements GrantedAuthority {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer roleId;
 

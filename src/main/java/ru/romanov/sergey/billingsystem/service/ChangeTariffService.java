@@ -1,7 +1,7 @@
 package ru.romanov.sergey.billingsystem.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.romanov.sergey.billingsystem.controller.dto.changetariff.ChangeTariffRequestDTO;
 import ru.romanov.sergey.billingsystem.entity.ChangeTariff;
 import ru.romanov.sergey.billingsystem.repository.ChangeTariffRepository;
 
@@ -19,21 +19,16 @@ public class ChangeTariffService {
         this.tariffService = tariffService;
     }
 
-    public ChangeTariff findTariffById(Integer id) {
+    public ChangeTariff findChangeTariffById(Integer id) {
         return changeTariffRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(EntityNotFoundException::new);
     }
 
-    public List<ChangeTariff> findAllTariffs() {
+    public List<ChangeTariff> findAllChangeTariffs() {
         return (List<ChangeTariff>) changeTariffRepository.findAll();
     }
 
     public ChangeTariff save(ChangeTariff changeTariff) {
         return changeTariffRepository.save(changeTariff);
-    }
-
-    public ChangeTariff save(ChangeTariffRequestDTO request) {
-        return changeTariffRepository.save(new ChangeTariff(0, phoneService.findUserById(request.getUserPhone()),
-                null, tariffService.findTariffById(request.getNewTariffId())));
     }
 }

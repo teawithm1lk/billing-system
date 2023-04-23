@@ -1,5 +1,6 @@
 package ru.romanov.sergey.billingsystem.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.romanov.sergey.billingsystem.entity.Payment;
 import ru.romanov.sergey.billingsystem.repository.PaymentRepository;
@@ -18,7 +19,7 @@ public class PaymentService {
 
     public Payment findPaymentById(Integer id) {
         return paymentRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public List<Payment> findAllPayments() {

@@ -44,13 +44,17 @@ public class Tariff {
     @Column
     private Double expiredMinutePriceIn;
 
+    @Column
+    private String currency;
+
     @OneToMany(mappedBy = "tariff", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Phone> phones;
 
     public Tariff(String tariffId, String tariffName, Integer periodPrice,
                   Integer minutesBalanceOut, Integer minutesBalanceIn, Integer minutesBalanceSummary,
                   Double minutePriceOut, Double minutePriceIn,
-                  Double expiredMinutePriceOut, Double expiredMinutePriceIn) {
+                  Double expiredMinutePriceOut, Double expiredMinutePriceIn,
+                  String currency) {
         this.tariffId = tariffId;
         this.tariffName = tariffName;
         this.periodPrice = periodPrice;
@@ -61,5 +65,6 @@ public class Tariff {
         this.minutePriceIn = minutePriceIn;
         this.expiredMinutePriceOut = expiredMinutePriceOut;
         this.expiredMinutePriceIn = expiredMinutePriceIn;
+        this.currency = currency;
     }
 }

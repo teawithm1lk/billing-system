@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Payment {
     @Id
     @Column
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn(name = "user_phone", nullable = false)
