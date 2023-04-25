@@ -8,6 +8,8 @@ import ru.romanov.sergey.billingsystem.controller.dto.billing.BillingRequestDTO;
 import ru.romanov.sergey.billingsystem.controller.dto.billing.BillingResponseDTO;
 import ru.romanov.sergey.billingsystem.controller.dto.changetariff.ChangeTariffRequestDTO;
 import ru.romanov.sergey.billingsystem.controller.dto.changetariff.ChangeTariffResponseDTO;
+import ru.romanov.sergey.billingsystem.controller.dto.phone.PhoneRequestDTO;
+import ru.romanov.sergey.billingsystem.controller.dto.phone.PhoneResponseDTO;
 import ru.romanov.sergey.billingsystem.entity.ChangeTariff;
 import ru.romanov.sergey.billingsystem.entity.Phone;
 import ru.romanov.sergey.billingsystem.entity.Tariff;
@@ -53,11 +55,14 @@ public class ManagerController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public ResponseEntity<Phone> postAbonentEndpoint(
-            @RequestBody Phone request
+    public ResponseEntity<PhoneResponseDTO> postAbonentEndpoint(
+            @RequestBody PhoneRequestDTO request
     ) {
         try {
-            return ResponseEntity.ok().body(phoneService.save(request));
+            Tariff tariff = tariffService.findTariffById(request.getTariffId());
+            Phone phone = phoneService.save(new Phone(request.getNumberPhone(), tariff));
+            return ResponseEntity.ok().body(new PhoneResponseDTO(phone.getUserPhone(), tariff.getTariffId(),
+                    phone.getUserBalance()));
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

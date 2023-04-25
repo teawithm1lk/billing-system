@@ -36,9 +36,8 @@ public class Phone {
     @OneToMany(mappedBy = "phone", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChangeTariff> changeTariffs;
 
-    public Phone(String userPhone, Tariff tariff, Integer minutesBalance) {
+    public Phone(String userPhone, Tariff tariff) {
         this.userPhone = userPhone;
         this.tariff = tariff;
-        this.minutesBalance = minutesBalance;
     }
 }
