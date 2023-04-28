@@ -9,9 +9,7 @@ import java.util.List;
 
 @Component
 public class CallService {
-
     private final CallRepository callRepository;
-
     private final PhoneService phoneService;
 
     public CallService(CallRepository callRepository, PhoneService phoneService) {

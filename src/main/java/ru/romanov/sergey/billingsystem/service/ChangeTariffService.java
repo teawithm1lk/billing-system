@@ -10,13 +10,9 @@ import java.util.List;
 @Component
 public class ChangeTariffService {
     private final ChangeTariffRepository changeTariffRepository;
-    private final PhoneService phoneService;
-    private final TariffService tariffService;
 
-    public ChangeTariffService(ChangeTariffRepository changeTariffRepository, PhoneService phoneService, TariffService tariffService) {
+    public ChangeTariffService(ChangeTariffRepository changeTariffRepository) {
         this.changeTariffRepository = changeTariffRepository;
-        this.phoneService = phoneService;
-        this.tariffService = tariffService;
     }
 
     public ChangeTariff findChangeTariffById(Integer id) {
