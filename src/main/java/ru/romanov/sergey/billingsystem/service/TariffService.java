@@ -1,13 +1,13 @@
 package ru.romanov.sergey.billingsystem.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.romanov.sergey.billingsystem.entity.Tariff;
 import ru.romanov.sergey.billingsystem.repository.TariffRepository;
 
 import java.util.List;
 
-@Component
+@Service
 public class TariffService {
     private final TariffRepository tariffRepository;
 

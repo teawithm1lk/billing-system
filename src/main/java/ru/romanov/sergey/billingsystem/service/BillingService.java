@@ -1,7 +1,7 @@
 package ru.romanov.sergey.billingsystem.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.romanov.sergey.billingsystem.controller.dto.billing.BillingRequestDTO;
 import ru.romanov.sergey.billingsystem.controller.dto.billing.BillingResponseDTO;
 import ru.romanov.sergey.billingsystem.entity.Call;
@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class BillingService {
     private final CallService callService;
     private final PhoneService phoneService;

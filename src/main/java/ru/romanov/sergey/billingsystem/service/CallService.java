@@ -1,13 +1,13 @@
 package ru.romanov.sergey.billingsystem.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.romanov.sergey.billingsystem.entity.Call;
 import ru.romanov.sergey.billingsystem.repository.CallRepository;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-@Component
+@Service
 public class CallService {
     private final CallRepository callRepository;
     private final PhoneService phoneService;
