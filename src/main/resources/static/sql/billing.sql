@@ -16,13 +16,9 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE billing;
 --
 -- Name: billing; Type: DATABASE; Schema: -; Owner: -
 --
-
-CREATE DATABASE billing WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Russian_Russia.1251';
-
 
 \connect billing
 

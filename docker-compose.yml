@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  srv:
+    container_name: srv
+    image: te4withm1lk/spring-app:1.0
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      DB_USERNAME: ${DB_USER:?dbUserNameNotProvided}
+      DB_PASSWORD: ${DB_PASSWORD:?dbPasswordNotProvided}
+      DB_NAME: ${DB_NAME:?dbNameNotProvided}
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      APP_PORT: ${APP_PORT:?appPortNotProvided}
+    restart: unless-stopped
+
+  postgres-db:
+    container_name: postgres-db
+    image: te4withm1lk/postgres-db_for_spring-app:1.0
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    healthcheck:
+      test: [ "CMD", "pg_isready","-d","postgres","-U","postgres" ]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+    volumes:
+      - ./src/main/resources/static/sql/billing.sql:/docker-entrypoint-initdb.d/initdb.sql

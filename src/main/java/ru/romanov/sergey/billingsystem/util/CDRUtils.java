@@ -1,5 +1,6 @@
 package ru.romanov.sergey.billingsystem.util;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -7,7 +8,14 @@ import java.util.*;
 
 public class CDRUtils {
     private static final String CDR_FILE_NAME = "cdr.txt";
-    public static final String CDR_FILE_PATH = "./src/main/resources/static/" + CDR_FILE_NAME;
+    private static final String CDR_DIR_PATH = "./cdr";
+    static {
+        File resourceDirectory = new File(CDR_DIR_PATH);
+        if (!resourceDirectory.exists()) {
+            resourceDirectory.mkdirs();
+        }
+    }
+    public static final String CDR_FILE_PATH = CDR_DIR_PATH + "/" + CDR_FILE_NAME;
     public static final String SDF_PATTERN = "yyyyMMddHHmmss";
     private static final int NUMBER_OF_LINES = 10000;
     private static final String[] CALL_TYPES = {"01", "02"};
